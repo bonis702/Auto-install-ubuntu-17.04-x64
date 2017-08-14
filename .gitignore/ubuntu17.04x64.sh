@@ -91,20 +91,8 @@ echo "screenfetch" >> .bash_profile
 #echo "screenfetch" >> .profile
 
 
-# install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/rizal180499/Auto-Installer-VPS/master/conf/badvpn-udpgw"
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
-chmod +x /usr/bin/badvpn-udpgw
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
-
-
-# setting port ssh
-sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
-sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
-service ssh restart
-
 # install dropbear
-apt-get  install dropbear
+apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 110"/g' /etc/default/dropbear
@@ -163,7 +151,7 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 cd
 wget "http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb"
 dpkg --install webmin_1.850_all.deb;
-apt-get install -f;
+apt-get install -f -y;
 rm /root/webmin_1.850_all.deb
 service webmin restart
 service vnstat restart
