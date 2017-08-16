@@ -196,7 +196,7 @@ iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
 
 # install badvpn
 apt-get -y install cmake make gcc
-https://github.com/bonis702/Auto-install-ubuntu-17.04-x64/blob/master/.gitignore/badvpn-1.999.127.tar.bz2
+wget https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/badvpn-1.999.127.tar.bz2
 tar xf badvpn-1.999.127.tar.bz2
 mkdir badvpn-build
 cd badvpn-build
