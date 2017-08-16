@@ -207,6 +207,8 @@ cmake ~/badvpn-1.999.127 -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
 make install
 screen badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
 cd
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
+cd
 
 # finalisasi
 chown -R www-data:www-data /home/vps/public_html
