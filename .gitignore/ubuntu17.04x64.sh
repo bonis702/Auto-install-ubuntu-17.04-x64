@@ -193,6 +193,17 @@ iptables -A FORWARD -m string --algo bm --string "torrent" -j DROP
 iptables -A FORWARD -m string --algo bm --string "announce" -j DROP
 iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
 
+# install badvpn
+apt-get -y install cmake make gcc
+https://github.com/bonis702/Auto-install-ubuntu-17.04-x64/blob/master/.gitignore/badvpn-1.999.127.tar.bz2
+tar xf badvpn-1.999.127.tar.bz2
+mkdir badvpn-build
+cd badvpn-build
+cmake ~/badvpn-1.999.127 -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
+make install
+screen badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
+cd
+
 # finalisasi
 chown -R www-data:www-data /home/vps/public_html
 service vnstat restart
