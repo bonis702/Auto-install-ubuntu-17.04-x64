@@ -146,8 +146,6 @@ echo; echo 'Installation has completed.'
 echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
-# install openvpn
-wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh
 
 # install webmin
 cd
