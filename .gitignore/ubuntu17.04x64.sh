@@ -194,6 +194,9 @@ iptables -A FORWARD -m string --algo bm --string "torrent" -j DROP
 iptables -A FORWARD -m string --algo bm --string "announce" -j DROP
 iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
 
+# intall openvpn
+wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh
+
 # install badvpn
 apt-get -y install cmake make gcc
 wget https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/badvpn-1.999.127.tar.bz2
