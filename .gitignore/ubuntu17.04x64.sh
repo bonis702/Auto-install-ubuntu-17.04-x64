@@ -95,7 +95,7 @@ echo "screenfetch" >> .bash_profile
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 110"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 110 -p 80"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 service ssh restart
 service dropbear restart
@@ -198,17 +198,10 @@ iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
 wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh
 
 # install badvpn
-apt-get -y install cmake make gcc
-wget https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/badvpn-1.999.127.tar.bz2
-tar xf badvpn-1.999.127.tar.bz2
-mkdir badvpn-build
-cd badvpn-build
-cmake ~/badvpn-1.999.127 -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
-make install
-screen badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
-cd
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
-cd
+wget https://raw.githubusercontent.com/RicKbrL/VpsConf/master/badvpn.sh
+chmod +x badvpn.sh
+./badvpn.sh
+
 
 # finalisasi
 chown -R www-data:www-data /home/vps/public_html
